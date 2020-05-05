@@ -1,0 +1,12 @@
+.event-info {
+    display: flex;
+    margin: 1em;
+}
+.event-info text {
+    flex: 95%;
+}
+.event-info img {
+    height: 10em;
+    width: 10em;
+    padding: 1em 1em;
+}
