@@ -51,7 +51,6 @@ class Event extends Component {
       return (
 				<div className="event">
 					{event.info}
-          Click page 2, then 1.
           {event.attendees}
 				</div>
 			);

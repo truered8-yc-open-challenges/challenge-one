@@ -1,29 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
 //import '../css/EventAttendee.css';
 
-async function toggleChecked(n, a) {
-  const box = document.getElementById('checkedIn');
-  const request = box.checked ? 'checkin' : 'checkout';
-  fetch('https://api.youthcomputing.ca/events/' + n + '/' + request, {
-    method: 'PUT',
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({
-      userId: a.id
-    })
-  });
-}
+class EventAttendee extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkedIn: props.attendee['checkedIn'],
+    };
+    this.toggleChecked = this.toggleChecked.bind(this);
+  }
 
-function EventAttendee(props) {
-	const a = props.attendee;
-  return (
-    <tr className="event-attendee">
-			<td className="attendee-name">{a['name']}</td>
-			<td>{a['email']}</td>
-      <td><input type='checkbox' id='checkedIn'
-      defaultChecked={a['checkedIn']}
-      onClick={() => toggleChecked(props.name, a)}/></td>
-    </tr>
-  );
+  async toggleChecked(n, a) {
+    const request = this.state.checkedIn ? 'checkout' : 'checkin';
+    fetch('https://api.youthcomputing.ca/events/' + n + '/' + request, {
+      method: 'PUT',
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        userId: a.id
+      })
+    });
+    this.setState({
+      checkedIn: !this.state.checkedIn,
+    });
+  }
+
+  render() {
+    const a = this.props.attendee;
+    return (
+      <tr className="event-attendee">
+        <td className="attendee-name">{a['name']}</td>
+        <td>{a['email']}</td>
+        <td><input type='checkbox' id='checkedIn'
+        defaultChecked={this.state.checkedIn}
+        onClick={() => this.toggleChecked(this.props.name, a)}/></td>
+      </tr>
+    );
+  }
 }
 
 export default EventAttendee;

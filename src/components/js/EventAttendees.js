@@ -3,6 +3,8 @@ import ReactPaginate from 'react-paginate';
 import EventAttendee from './EventAttendee';
 import '../css/EventAttendees.css';
 
+let first = true;
+
 class EventAttendees extends Component {
   constructor(props) {
     super(props);
@@ -14,14 +16,14 @@ class EventAttendees extends Component {
       currentPage: 0,
     };
     this.state.pageCount = Math.ceil(this.props.attendees.length / this.state.perPage);
-    this.setElementsForCurrentPage();
   }
 
   setElementsForCurrentPage() {
     let elements = this.state.data
-                  .slice(this.state.offset, this.state.offset + this.state.perPage)
-                  .map(a =>( 
-                  <EventAttendee name={this.props.name} attendee={a}/>)
+    .slice(this.state.offset, this.state.offset + this.state.perPage)
+    .map(a => {
+      console.log(a);
+      return (<EventAttendee name={this.props.name} attendee={a}/>)}
     );
     this.setState({ elements: elements });
   }
@@ -35,6 +37,10 @@ class EventAttendees extends Component {
   }
   
   render() {
+    if(first) {
+      first = false;
+      this.setElementsForCurrentPage();
+    }
     let paginationElement;
     if (this.state.pageCount > 1) {
       paginationElement = (
