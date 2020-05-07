@@ -1,5 +1,25 @@
+.search {
+    text-align: center;
+    margin: 1em;
+}
+.search input {
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 1.6em;
+    text-align: center;
+    padding: 4px 4px;
+    width: 10em;
+    transition: 250ms;
+}
+.search input:focus {
+    outline: none;
+    width: 15em;
+    border: 2px solid #020a50;
+}
+
 .pagination {
-    align-items: center;
+    text-align: center;
+    user-select: none;
 }
 .pagination > li {
     display: inline-block;
@@ -21,18 +41,19 @@
     border: 1px solid #ddd;
     margin-left: -1px;
     transition: background-color 250ms, color 250ms;
+    cursor: pointer;
 }
-
 .pagination > li.active > a {
     color: #fff;
     background-color: #0f25ee;
     border-color: #7e1e6e;
 }
-
-/* Style the active class (and buttons on mouse-over) */
 .pagination > li > a:hover {
     background-color:  #1f35fe;
     color: white;
+}
+.pagination > li > a:focus {
+    outline: none;
 }
 
 .event-attendees table {
