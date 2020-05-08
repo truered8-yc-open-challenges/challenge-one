@@ -27,12 +27,14 @@ class EventAttendees extends Component {
   }
 
   search(text) {
-    const field = (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).test(text) ? 'email' : 'name';
     const filter = text.toLowerCase();
-    const newData = this.state.allData.filter(a => {
-      return a[field].toLowerCase().includes(filter);
+    const names = this.state.allData.filter(a => {
+      return a['name'].toLowerCase().includes(filter);
     });
-    console.log(newData);
+    const emails = this.state.allData.filter(a => {
+      return a['email'].toLowerCase().includes(filter);
+    });
+    const newData = [...new Set(names.concat(emails))];
     this.setState({ data: newData, offset: 0 }, () => {
       this.setElementsForCurrentPage();
     });
