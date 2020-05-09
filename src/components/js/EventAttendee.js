@@ -10,6 +10,13 @@ class EventAttendee extends Component {
     this.toggleChecked = this.toggleChecked.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.checkedIn !== this.props.attendee['checkedIn'])
+      this.setState({
+        checkedIn: prevProps.attendee['checkedIn'],
+      });
+  }
+
   async toggleChecked(n, a) {
     const request = this.state.checkedIn ? 'checkout' : 'checkin';
     fetch('https://api.youthcomputing.ca/events/' + n + '/' + request, {
@@ -31,7 +38,7 @@ class EventAttendee extends Component {
         <td className="attendee-name">{a['name']}</td>
         <td>{a['email']}</td>
         <td><input type='checkbox' id='checkedIn'
-        defaultChecked={this.state.checkedIn}
+        checked={this.state.checkedIn}
         onClick={() => this.toggleChecked(this.props.name, a)}/></td>
       </tr>
     );
