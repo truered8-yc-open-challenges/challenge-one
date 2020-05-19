@@ -15,7 +15,8 @@ function EventInfo(props) {
         <h3>{i['name']} {i['year']}</h3>
         <b>Location: </b>{i['location']}<br/>
         <b>Start Date: </b>{toDate(i['start-date']['_seconds'])}<br/>
-        <b>End Date: </b>{toDate(i['end-date']['_seconds'])}
+        <b>End Date: </b>{toDate(i['end-date']['_seconds'])}<br/>
+        <b>Attendees: </b>{props.attendees.length}
       </div>
       <img src={i['event-logo']} alt='logo'/>
     </div>

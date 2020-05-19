@@ -19,7 +19,8 @@ class Event extends Component {
         fetch('https://api.youthcomputing.ca/events/'+ getName())
             .then(response => response.json());
         event = {
-            info: <EventInfo info={eventJson['info']}/>,
+            info: <EventInfo info={eventJson['info']}
+            attendees={eventJson['attendees']}/>,
             attendees: <EventAttendees name={getName()}
             attendees={eventJson['attendees']}/>
         }
