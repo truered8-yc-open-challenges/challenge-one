@@ -56,8 +56,12 @@
     outline: none;
 }
 
-.event-attendees table {
+.event-attendees {
     width: 100%;
+}
+.event-attendees table {
+    margin: 0 auto;
+    width: 90%;
 }
 .event-attendees table, th, td {
     text-align: center;
